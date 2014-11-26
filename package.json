@@ -1,9 +1,8 @@
 {
   "name": "confoo",
   "author": "Evan Short",
-  "description": "command line tool for managing database migrations",
+  "description": "look up config files above the current directory",
   "version": "0.0.1",
-  "preferGlobal": true,
   "repository": {
     "type": "git",
     "url": "https://github.com/whtevn/confoo.git"
