@@ -1,3 +1,6 @@
+var fs = require('q-io/fs')
+  , _  = require('underscore')
+  ;
 // recursively search for a config file
 // could abstract this out into its own package
 // will be useful for deploy tool

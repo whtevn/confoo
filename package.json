@@ -19,11 +19,11 @@
   "engines": {
     "node": ">=0.8.26"
   },
-  "keywords": [
-  ],
+  "keywords": [],
   "scripts": {},
   "main": "./confoo",
   "dependencies": {
+    "q-io": "^1.11.6",
     "underscore": "^1.7.0"
   }
 }
