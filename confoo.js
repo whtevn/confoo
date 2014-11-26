@@ -1,7 +1,7 @@
 // recursively search for a config file
 // could abstract this out into its own package
 // will be useful for deploy tool
-function findConfig(name, defaults, level){
+function findConfig(name, level){
   // check to see if the level we are at is a directory
   return fs.isDirectory(level)
     .then(function(is_directory){
@@ -29,14 +29,7 @@ function findConfig(name, defaults, level){
     .then(function(is_file){
       if(is_file){
         // if the file was found
-        return fs.read(is_file)
-          .then(function(contents){
-            var regex = new RegExp('\.?'+name)
-            contents = JSON.parse(contents); 
-            contents = _.extend(defaults, contents);
-            contents.__basedir = is_file.replace(regex, '');
-            return contents;
-          });
+        return is_file
       }else{
         // if no file was found, try one level higher
         return findConfig(name, defaults, level+'/..');
@@ -48,5 +41,22 @@ function findConfig(name, defaults, level){
     });
 }
 
-module.exports = findConfig;
+function getConfig(name, defaults){
+  return findConfig(name)
+    .then(function(file){
+      fs.read(file)
+          .then(function(contents){
+            var regex = new RegExp('\.?'+name)
+            contents = JSON.parse(contents); 
+            contents = _.extend(defaults, contents);
+            contents.__basedir = is_file.replace(regex, '');
+            return contents;
+          });
+    })
+}
+
+module.exports = {
+  find: findConfig
+, get: getConfig
+};
 
