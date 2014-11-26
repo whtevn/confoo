@@ -21,22 +21,10 @@
     "node": ">=0.8.26"
   },
   "keywords": [
-    "cli",
-    "database",
-    "utility",
-    "migrate",
-    "schema"
   ],
   "scripts": {},
   "main": "./confoo",
   "dependencies": {
-    "mysql": "~2.5.3",
-    "promiseus": "whtevn/promiseus",
-    "prompt": "~0.2.14",
-    "q": "^1.1.1",
-    "q-io": "^1.11.6",
-    "sha1": "^1.1.0",
-    "underscore": "^1.7.0",
-    "yargs": "~1.3.3"
+    "underscore": "^1.7.0"
   }
 }
