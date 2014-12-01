@@ -5,6 +5,7 @@ var fs = require('q-io/fs')
 // could abstract this out into its own package
 // will be useful for deploy tool
 function findConfig(name, level){
+  level = (level || '.')
   // check to see if the level we are at is a directory
   return fs.isDirectory(level)
     .then(function(is_directory){
