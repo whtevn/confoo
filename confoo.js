@@ -1,7 +1,12 @@
+var fs = require('q-io/fs')
+  , q  = require('q')
+  , _  = require('underscore')
+  ;
 // recursively search for a config file
 // could abstract this out into its own package
 // will be useful for deploy tool
 function findConfig(name, level){
+  level = (level || '.')
   // check to see if the level we are at is a directory
   return fs.isDirectory(level)
     .then(function(is_directory){
@@ -44,13 +49,16 @@ function findConfig(name, level){
 function getConfig(name, defaults){
   return findConfig(name)
     .then(function(file){
-      fs.read(file)
+      return fs.read(file)
           .then(function(contents){
             var regex = new RegExp('\.?'+name)
             contents = JSON.parse(contents); 
             contents = _.extend(defaults, contents);
-            contents.__basedir = is_file.replace(regex, '');
+            contents.__basedir = file.replace(regex, '');
             return contents;
+          })
+          .catch(function(err){
+            console.log(err.stack);
           });
     })
 }
