@@ -54,7 +54,7 @@ function getConfig(name, defaults){
             var regex = new RegExp('\.?'+name)
             contents = JSON.parse(contents); 
             contents = _.extend(defaults, contents);
-            contents.__basedir = file.replace(regex, '');
+            contents.__basedir = file.replace(regex, '')+'/';
             return contents;
           })
           .catch(function(err){
