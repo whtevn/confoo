@@ -1,4 +1,5 @@
 var fs = require('q-io/fs')
+  , q  = require('q')
   , _  = require('underscore')
   ;
 // recursively search for a config file
