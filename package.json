@@ -2,7 +2,7 @@
   "name": "confoo",
   "author": "Evan Short",
   "description": "look up config files above the current directory",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "repository": {
     "type": "git",
     "url": "https://github.com/whtevn/confoo.git"
