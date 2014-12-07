@@ -32,7 +32,7 @@ function findConfig(name, level){
           });
       }else{
         // otherwise, throw an error
-        throw('no config file found'); 
+        throw(new Error('no config file found')); 
       }
     })
     .then(function(is_file){
