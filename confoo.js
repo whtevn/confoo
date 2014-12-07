@@ -44,10 +44,6 @@ function findConfig(name, level){
         return findConfig(name, level+'/..');
       }
     })
-    .fail(function(err){
-      // console log any errors
-      console.log(err);
-    });
 }
 
 function getConfig(name, defaults){
@@ -61,9 +57,6 @@ function getConfig(name, defaults){
             contents.__basedir = file.replace(regex, '')+'/';
             return contents;
           })
-          .catch(function(err){
-            console.log(err.stack);
-          });
     })
 }
 
