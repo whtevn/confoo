@@ -20,11 +20,15 @@ function findConfig(name, level){
 
         return q.all(is_file)
           .then(function(is_file){
+            var loc = false;
             // if any of this options are found on this level, return the location of the file
             // locate the working dir_option by finding the first place the is_file array is `true`
             // it is possible to find more than one migrit.json file is found, but they will be loaded
             // by preference according to the order of the array
-            return level+dir_options[is_file.indexOf(true)];
+            if(is_file.indexOf(true)>-1){
+              loc = level+dir_options[is_file.indexOf(true)]
+            }
+            return loc;
           });
       }else{
         // otherwise, throw an error
@@ -37,7 +41,7 @@ function findConfig(name, level){
         return is_file
       }else{
         // if no file was found, try one level higher
-        return findConfig(name, defaults, level+'/..');
+        return findConfig(name, level+'/..');
       }
     })
     .fail(function(err){
@@ -54,7 +58,7 @@ function getConfig(name, defaults){
             var regex = new RegExp('\.?'+name)
             contents = JSON.parse(contents); 
             contents = _.extend(defaults, contents);
-            contents.__basedir = file.replace(regex, '');
+            contents.__basedir = file.replace(regex, '')+'/';
             return contents;
           })
           .catch(function(err){
